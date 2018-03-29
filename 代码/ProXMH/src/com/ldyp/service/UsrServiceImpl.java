@@ -31,6 +31,10 @@ public class UsrServiceImpl {
 	public List<Usr> list(){
 		return this.usrDao.list();
 	}
+	public Usr getUsrByPhone(String phone) {
+		return this.usrDao.getUsrByPhone(phone);
+	}
+	
 	/**
 	 * 
 	 * @author ZChi
@@ -50,6 +54,7 @@ public class UsrServiceImpl {
 		}
 		return null;
 	}
+	
 	/**
 	 * 
 	 * 	@author ZChi

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import com.ldyp.entity.Usr;
@@ -36,6 +37,13 @@ public class UsrDaoImpl implements UsrDao {
 		// TODO Auto-generated method stub
 		List<Usr> userList = (List<Usr>) this.sessionFactory.getCurrentSession().createQuery("from Usr").list();
 		return userList;
+	}
+	public Usr getUsrByPhone(String phone) {
+		String hql = "from Usr where phone = ?";
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, phone);
+		Usr usr = (Usr)query.uniqueResult();
+		return usr;
 	}
 
 }

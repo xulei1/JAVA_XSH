@@ -9,4 +9,5 @@ public interface UsrDao {
 	public void delUsr(Usr usr);
 	public void UpdateUsr(Usr usr);
 	public List<Usr> list();
+	public Usr getUsrByPhone(String phone);
 }

@@ -54,18 +54,56 @@ public class UsrLoginController {
 		session.setAttribute("user", usr);
 		return map;
 	}
-	@RequestMapping("/phoneLogin")
+	/**
+	 * @author ZChi
+	 * @version 1.0
+	 * show 向用户输入的手机号发送验证码
+	 * @param phoneId 手机号
+	 * @return 短信已经发送，请注意查收
+	 */
+	@RequestMapping("/sendCode")
 	@ResponseBody
-	public Map<String,String> phoneLogin(@RequestParam int phoneId) {
+	public Map<String,String> sendCode(@RequestParam String phoneId) {
 		VerCode verCode = new VerCode();
-		String code = verCode.getCode();
+		String yzcode = verCode.getCode();
+		String code = "【校美好】验证码:"+yzcode+"此验证码10分钟有效"+"如飞本人操作，请忽略本短信";
+		Map<String,String> map = new HashMap();
+		
 		try {
-		    SmsSingleSender sender = new   SmsSingleSender(appid, "replace with key");
-		    SmsSingleSenderResult result = sender.send(0, "86", "18326693192", "【腾讯】验证码测试1234", "", "123");
-		    System.out.print(result);
+			int appid = 1400078692;
+			String appkey = "012b65900c25c5f049d27b0a4fb77787";
+			
+			//初始化单发
+            SmsSingleSender singleSender = new SmsSingleSender(appid, appkey);
+            SmsSingleSenderResult singleSenderResult;
+		    
+            //普通发单
+            singleSenderResult = singleSender.send(0, "86",phoneId , code, "", "");
+		    System.out.print(singleSenderResult);
+		    		    
+		    String sign = "短信以经发送,请注意查收";
+		    map.put("sign", sign);
+		   
+		    
+		    //发送 通知内容
+		    
+		    
 			} catch (Exception e) {
 				e.printStackTrace();
 		}
+		 return map;
+	}
+	
+	@RequestMapping("/testCode")
+	@ResponseBody
+	public Map<String,String> testCode(@RequestParam String code,@RequestParam String phoneId){
+		
+		Usr usr = this.usrServiceImpl.getUsrByPhone(phoneId);
+		if(usr.getPhone() == null) {  //不存在就帮该用户创建一个此手机账号
+			usr.setPhone(phoneId);
+			this.usrServiceImpl.addUsr(usr);
+		}
+		
 	}
 	
 }

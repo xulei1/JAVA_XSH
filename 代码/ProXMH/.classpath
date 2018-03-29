@@ -72,6 +72,14 @@
 	<classpathentry kind="var" path="JRE_LIB"/>
 	<classpathentry kind="lib" path="H:/apache-tomcat-9.0.2/lib/annotations-api.jar"/>
 	<classpathentry kind="lib" path="H:/apache-tomcat-9.0.2/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/腾讯云短信验证码服务/qcloudsms-1.0.2.jar"/>
+	<classpathentry kind="lib" path="D:/腾讯云短信验证码服务/qcloudsms-1.0.2.jar" sourcepath="D:/腾讯云短信验证码服务/qcloudsms-1.0.2.jar">
+		<attributes>
+			<attribute name="source_encoding" value="UTF-8"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/ZChi/Downloads/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ZChi/Downloads/httpcore-4.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ZChi/Downloads/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ZChi/Downloads/json-20170516.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
