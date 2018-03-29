@@ -102,6 +102,8 @@ public class UsrLoginController {
 		if(usr.getPhone() == null) {  //不存在就帮该用户创建一个此手机账号
 			usr.setPhone(phoneId);
 			this.usrServiceImpl.addUsr(usr);
+		}else {   //验证code
+			
 		}
 		
 	}
